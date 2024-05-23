@@ -52,28 +52,7 @@ menu = {
 
 # 1. Set up order list. Order list will store a list of dictionaries for
 # menu item name, item price, and quantity ordered
-order_list = [
-    {
-        "Item name": "string",
-        "Price": float,
-        "Quantity": int
-    },
-    {
-        "Item name": "string",
-        "Price": float,
-        "Quantity": int
-    },
-    {
-        "Item name": "string",
-        "Price": float,
-        "Quantity": int
-    },
-    {
-        "Item name": "string",
-        "Price": float,
-        "Quantity": int
-    }
-]
+order_list = []
 
 # Launch the store and present a greeting to the customer
 print("Welcome to the variety food truck.")
@@ -152,7 +131,7 @@ while place_order:
                     menu_selection_name = menu_items[menu_selection]["Item name"]
 
                     # Ask the customer for the quantity of the menu item
-                    quantity = input(f"How many {menu_selection_name}'s would you like? \n Note: Item quantity will default to 1 if your choice is invalid.")
+                    quantity = input(f"How many {menu_selection_name}s would you like? \n Note: Item quantity will default to 1 if your choice is invalid.")
 
                     # Check if the quantity is a number, default to 1 if not
                     if quantity.isdigit():
@@ -162,7 +141,7 @@ while place_order:
                     # Add the item name, price, and quantity to the order list
                     order_list.append({
                         "Item name": menu_selection_name,
-                        "Price": menu_items[menu_selection]["Price"],                            # check this line
+                        "Price": menu_items[menu_selection]["Price"],                           
                         "Quantity": quantity
                     })
 
@@ -171,7 +150,7 @@ while place_order:
                     print(f"{menu_selection} was not a valid menu option.")
                 # Tell the customer they didn't select a menu option
             else:
-                print("You didn't select a menu option number.")                           # last line I wrote in this section 
+                print("You didn't select a menu option number.") # last line I wrote in step 4
         else:
             # Tell the customer they didn't select a menu option
             print(f"{menu_category} was not a menu option.")
@@ -206,13 +185,13 @@ while place_order:
 print("This is what we are preparing for you.\n")
 
 # Can uncomment the following line to check the structure of the order
-# print(order_list)                                                          #print(order) --> this is what it used to say
+# print(order_list)                                                          
 
 print("Item name                 | Price  | Quantity")
 print("--------------------------|--------|----------")
 
 # 6. Loop through the items in the customer's order
-for item in order_list:                                                      # started from here
+for item in order_list:                                                      
     # 7. Store the dictionary items as variables
     item_name = item["Item name"]
     price = item["Price"]
@@ -230,8 +209,7 @@ for item in order_list:                                                      # s
     print(f"{item_name}{item_spaces} | ${price}{price_spaces} | {quantity}")
 
 # 11. Calculate the cost of the order using list comprehension
-# Multiply the price by quantity for each item in the order list, then sum()              # need to just fix end of this code and make the string things not appear when printing
+# Multiply the price by quantity for each item in the order list, then sum()              
 # and print the prices.
-total_cost = sum(price * quantity for item in order_list)
-#total_cost = sum(item["Price"] * item["Quantity"] for item in order_list)
+total_cost = sum(item["Price"] * item["Quantity"] for item in order_list)
 print("\nThe total cost of your order is: ${:.2f}".format(total_cost))
